@@ -2,90 +2,18 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>정보처리기사 디자인 패턴 퀴즈</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-    #question {
-      font-size: 1.5em;
-      margin-bottom: 10px;
-    }
-    #answer {
-      font-size: 1.2em;
-      color: green;
-      display: none;
-    }
-    button {
-      margin-top: 10px;
-      padding: 10px;
-    }
-  </style>
+  <title>정보처리기사 실기 퀴즈</title>
+  <!-- <link rel="stylesheet" href="css/reset.css"> -->
+  <link rel="stylesheet" href="css/index.css">
+  <script src="js/intro.js"></script>
 </head>
 <body>
-
-  <h1>디자인 패턴 퀴즈</h1>
-  <div id="question">문제를 불러오는 중...</div>
-  <div id="answer"></div>
-  <button onclick="showAnswer()">정답 보기</button>
-  <button onclick="nextQuestion()">다음 문제</button>
-
-  <script>
-    const quizData = [
-      { question: "브릿지", answer: "인스턴스 보장 패턴" },
-      { question: "싱글턴", answer: "인스턴스 보장 패턴" },
-      { question: "추상 팩토리", answer: "생성 패턴" },
-      { question: "팩토리 메서드", answer: "생성 패턴" },
-      { question: "빌더", answer: "생성 패턴" },
-      { question: "프로토타입", answer: "생성 패턴" },
-      { question: "어댑터", answer: "구조 패턴" },
-      { question: "데코레이터", answer: "구조 패턴" },
-      { question: "퍼사드", answer: "구조 패턴" },
-      { question: "프록시", answer: "구조 패턴" },
-      { question: "컴포지트", answer: "구조 패턴" },
-      { question: "템플릿 메서드", answer: "행위 패턴" },
-      { question: "커맨드", answer: "행위 패턴" },
-      { question: "옵저버", answer: "행위 패턴" },
-      { question: "상태", answer: "행위 패턴" },
-      { question: "전략", answer: "행위 패턴" },
-      { question: "방문자", answer: "행위 패턴" },
-      { question: "메멘토", answer: "행위 패턴" },
-      { question: "중재자", answer: "행위 패턴" },
-      { question: "인터프리터", answer: "행위 패턴" }
-    ];
-
-    let currentQuiz = null;
-    let reversed = false;
-
-    function nextQuestion() {
-      const index = Math.floor(Math.random() * quizData.length);
-      currentQuiz = quizData[index];
-
-      // 랜덤하게 문제 방향 선택 (정방향 or 역방향)
-      reversed = Math.random() < 0.5;
-
-      const questionText = reversed
-        ? `${currentQuiz.answer}은(는)?`
-        : `${currentQuiz.question}은(는)?`;
-
-      document.getElementById("question").textContent = questionText;
-      document.getElementById("answer").style.display = "none";
-    }
-
-    function showAnswer() {
-      const answerText = reversed
-        ? currentQuiz.question
-        : currentQuiz.answer;
-
-      const answerDiv = document.getElementById("answer");
-      answerDiv.textContent = `👉 정답: ${answerText}`;
-      answerDiv.style.display = "block";
-    }
-
-    // 처음 로딩 시 문제 표시
-    nextQuestion();
-  </script>
-
+<nav>
+  <a href="/subpage/keyword.html">두음쎔</a>
+  <a href="/subpage/designPattern.html">디자인패턴</a>
+  <a href="/subpage/boxTest.html">박스테스트</a>
+  <a href="/subpage/protocol.html">프로토콜</a>
+  <a href="/subpage/relationship.html">관계</a>
+</nav>
 </body>
 </html>

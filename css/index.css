@@ -1,0 +1,17 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+#question {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+#answer {
+  font-size: 1.2em;
+  color: green;
+  display: none;
+}
+button {
+  margin-top: 10px;
+  padding: 10px;
+}
