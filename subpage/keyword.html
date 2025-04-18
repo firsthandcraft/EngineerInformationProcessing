@@ -5,13 +5,36 @@
   <title>정보처리기사 실기 퀴즈</title>
   <!-- <link rel="stylesheet" href="css/reset.css"> -->
   <link rel="stylesheet" href="css/index.css">
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+#question {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+#answerWrap{
+  width: 100%;  height: 80px;
+}
+#answer {
+  font-size: 1.2em;
+  color: green;
+  display: none;
+}
+button {
+  margin-top: 10px;
+  padding: 10px;
+}
+  </style>
   <script src="js/intro.js"></script>
 </head>
 <body>
 
   <h1>두음쌤 퀴즈</h1>
   <div id="question">문제를 불러오는 중...</div>
-  <div id="answer"></div>
+  <div id="answerWrap">   <div id="answer"></div></div>
+
   <button onclick="showAnswer()">정답 보기</button>
   <button onclick="nextQuestion()">다음 문제</button>
 
@@ -95,9 +118,20 @@
       { question: "프로세스상태", answer: "생준실대완" },
       { question: "선점스케줄링알고리즘", answer: "SMMR _ sRT,MLQ,MLFG,RoundRobbin" },
       { question: "비선점스케줄링알고리즘", answer: "우기HFS" },
-      { question: "", answer: "" },
-      { question: "", answer: "" },
-      { question: "", answer: "" },
+      { question: "HRN의 우선순위", answer: "대+서/서" },
+      { question: "반환시간 및 대기시간 계산방법", answer: "반종도대반서" },
+      { question: "교착상태해결방법", answer: "예회발복" },
+      { question: "원거리 통신망WAN연결방법", answer: "전회패" },
+      { question: "프로토콜의 기본 3요소", answer: "구의타" },
+      { question: "자동반복요청방식ARQ", answer: "스고셀" },
+      { question: "ipv4에서 ipv6로 전환", answer: "튜얼스택, 터미널, 주소변환" },
+      { question: "TCP특징", answer: "신연흐흔" },
+      { question: "TCP헤더구조", answer: "소데씨엑 헤플윈 체어" },
+      { question: "UDP헤더구조", answer: "소데렝체" },
+      { question: "네트워크 설치 (토프로지종류)", answer: "버트링성" },
+      { question: "스토리지시스템유형", answer: "다나스" },
+      { question: "클라우드 컴퓨팅 분류", answer: "사공하" },
+      { question: "클라우드서비스 유형", answer: "인플소" },
 //테스트하네스
     ];
 

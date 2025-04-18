@@ -6,6 +6,9 @@ body {
   font-size: 1.5em;
   margin-bottom: 10px;
 }
+#answerWrap{
+  width: 100%;  height: 80px;
+}
 #answer {
   font-size: 1.2em;
   color: green;

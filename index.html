@@ -6,8 +6,166 @@
   <!-- <link rel="stylesheet" href="css/reset.css"> -->
   <link rel="stylesheet" href="css/index.css">
   <script src="js/intro.js"></script>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+#question {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+#answerWrap{
+  width: 100%;  height: 80px;
+}
+#answer {
+  font-size: 1.2em;
+  color: green;
+  display: none;
+}
+button {
+  margin-top: 10px;
+  padding: 10px;
+}
+  </style>
 </head>
 <body>
+  
+  <h1>두음쌤 퀴즈</h1>
+  <div id="question">문제를 불러오는 중...</div>
+  <div id="answerWrap">   <div id="answer"></div></div>
+
+  <button onclick="showAnswer()">정답 보기</button>
+  <button onclick="nextQuestion()">다음 문제</button>
+
+  <script>
+    const quizData = [
+      { question: "소프트웨어 생명주기	모델	종류", answer: "폭프나반" },
+      { question: "나선형 모델 절차", answer: "계위개고" },
+      { question: "객체지향 구성요소", answer: "클객 메 메인속" },
+      { question: "객체지향 기법", answer: "캡상다추정관" },
+      { question: "럼바우의 객체지향 분석 절차", answer: "객동기" },
+      { question: "COCOMO의 소프트웨어 개발유형", answer: "오세임" },
+      { question: "위험 대응 전략", answer: "회전완수, 회피 전가 완화 수용" },
+      { question: "소프트웨어 아키텍처 4_1뷰", answer: "유논프구배" },
+      { question: "아키텍쳐 비용 평가 모델종류", answer: "SACAA" },
+      { question: "디자인패턴 구성요소", answer: "패문솔사결샘" },
+      { question: "목적에따른 디자인패턴유형", answer: "생구행" },
+      { question: "목적에따른 디자인패턴유형- 생성패턴", answer: "생빌프로팩앱싱" },
+      { question: "목적에따른 디자인패턴유형- 구조패턴", answer: "구브데퍼플프록컴어" },
+      { question: "목적에따른 디자인패턴유형- 행위패턴", answer: "행미인이 텝옵스테비커 스트메체" },
+      { question: "목적에따른 디자인패턴유형- 행위패턴 행미인이", answer: "미디에이터,인터프리터,이터레이터" },
+      { question: "요구개발프로세스", answer: "도분명확" },
+      { question: "UI유형", answer: "CGNO" },
+      { question: "UI설계원칙", answer: "직유학유" },
+      { question: "UI품질요구사항", answer: "기신사효유이(유지보수,이식성)" },
+      { question: "UI화면설계구분", answer: "와스프목" },
+      { question: "UML의 특징", answer: "가구명문" },
+      { question: "UML구성요소", answer: "사관다" },
+      { question: "구조(정적)적다이어그램", answer: "클객컴배복패" },
+      { question: "행위적(동적)다이어그램", answer: "유시커상활타" },
+      { question: "데이터모델링 절차", answer: "요개논물" },
+      { question: "일반집한연산", answer: "합교차카" },
+      { question: "순수관계연산자", answer: "셀프조디" },
+      { question: "관계대수와 관계해석", answer: "대절해비" },
+      { question: "이상현상", answer: "삽삭갱" },
+      { question: "데이터베이스 정규화 단계", answer: "원부이결다조" },
+      { question: "데이터베이스 무결성 종류", answer: "개참속사키" },
+      { question: "파티셔닝 종류", answer: "레해리컴라" },
+      { question: "NoSql 유형", answer: "키컬도그" },
+      { question: "데이터마이닝 주요기법", answer: "분연연데 (분류,연관,연속,데이터군집화)" },
+      { question: "EAI구축유형", answer: "포허메하" },
+      { question: "트렌젝션응용", answer: "ACID 원일독영" },
+      { question: "트렌젝션 상태", answer: "활부완실철" },
+      { question: "TCL명령어", answer: "커롤체" },
+      { question: "병행제어기법", answer: "로낙타다2" },
+      { question: "회복기법종류", answer: "회로체그" },
+      { question: "DDL", answer: "크알드트" },
+      { question: "DML", answer: "세인업데" },
+      { question: "DCL 권한주기", answer: "그권한on테이블to" },
+      { question: "DCL 권한뺏기", answer: "리권한on테이블from" },
+      { question: "update", answer: "업셋웨" },
+      { question: "개발도구 분류", answer: "빌구테형" },
+      { question: "형상관리 절차", answer: "식통감기" },
+      { question: "소프트웨어형상관리도구유형", answer: "공클분" },
+      { question: "백업의유형", answer: "전차증" },
+      { question: "응집도유형", answer: "우논시절통순기" },
+      { question: "결합도유형", answer: "내공외제스자" },
+      { question: "SW보안의 3개요소", answer: "기무가" },
+      { question: "SW개발보안용어", answer: "자위취위" },
+      { question: "DDOS공격유형요소", answer: "HAMAD (Handler,Agent,Master,Attacker,Deamon)" },
+      { question: "인증기술의 유형", answer: "지소생특" },
+      { question: "데이터베이스암호화기법", answer: "애플티하" },
+      { question: "시큐어코딩가이드", answer: "입보시에코캡아" },
+      { question: "소프트웨어테스트원리", answer: "결완초집살정오" },
+      { question: "화이트박스테스트유형", answer: "구결조조변다기제데루" },
+      { question: "블랙박스테스트유형", answer: "동경결상유분페원비오" },
+      { question: "테스트목적에따른 분류", answer: "회안성구회병" },
+      { question: "정형기술 검토", answer: "동워인" },
+      { question: "테스트커버리지유형", answer: "기라코" },
+      { question: "테스트오라클", answer: "참샘휴일" },
+      { question: "테스트레벨종류", answer: "단통시인" },
+      { question: "v모델", answer: "요분시설단설 단통시인" },
+      { question: "하향식및 상향식통합수행방식", answer: "하스상드" },
+      { question: "테스트하네스구성요소", answer: "드슈스케시스목" },
+      { question: "어플리케이션성능측정지표", answer: "처응경자" },
+      { question: "윈도우즈운영체제특징", answer: "지선자오" },
+      { question: "유닉스계열운영체제특징", answer: "대다사이계" },
+      { question: "운영체제발달과정", answer: "일시다범분" },
+      { question: "메모리관리기법의 종류", answer: "반배할교" },
+      { question: "배치기법유형", answer: "초적악" },
+      { question: "지역성유형", answer: "시공순" },
+      { question: "프로세스상태", answer: "생준실대완" },
+      { question: "선점스케줄링알고리즘", answer: "SMMR _ sRT,MLQ,MLFG,RoundRobbin" },
+      { question: "비선점스케줄링알고리즘", answer: "우기HFS" },
+      { question: "HRN의 우선순위", answer: "대+서/서" },
+      { question: "반환시간 및 대기시간 계산방법", answer: "반종도대반서" },
+      { question: "교착상태해결방법", answer: "예회발복" },
+      { question: "원거리 통신망WAN연결방법", answer: "전회패" },
+      { question: "프로토콜의 기본 3요소", answer: "구의타" },
+      { question: "자동반복요청방식ARQ", answer: "스고셀" },
+      { question: "ipv4에서 ipv6로 전환", answer: "튜얼스택, 터미널, 주소변환" },
+      { question: "TCP특징", answer: "신연흐흔" },
+      { question: "TCP헤더구조", answer: "소데씨엑 헤플윈 체어" },
+      { question: "UDP헤더구조", answer: "소데렝체" },
+      { question: "네트워크 설치 (토프로지종류)", answer: "버트링성" },
+      { question: "스토리지시스템유형", answer: "다나스" },
+      { question: "클라우드 컴퓨팅 분류", answer: "사공하" },
+      { question: "클라우드서비스 유형", answer: "인플소" },
+//테스트하네스
+    ];
+
+    let currentQuiz = null;
+    let reversed = false;
+
+    function nextQuestion() {
+      const index = Math.floor(Math.random() * quizData.length);
+      currentQuiz = quizData[index];
+
+      // 랜덤하게 문제 방향 선택 (정방향 or 역방향)
+      reversed = Math.random() < 0.5;
+
+      const questionText = reversed
+        ? `${currentQuiz.answer}은(는)?`
+        : `${currentQuiz.question}은(는)?`;
+
+      document.getElementById("question").textContent = questionText;
+      document.getElementById("answer").style.display = "none";
+    }
+
+    function showAnswer() {
+      const answerText = reversed
+        ? currentQuiz.question
+        : currentQuiz.answer;
+
+      const answerDiv = document.getElementById("answer");
+      answerDiv.textContent = `👉 정답: ${answerText}`;
+      answerDiv.style.display = "block";
+    }
+
+    // 처음 로딩 시 문제 표시
+    nextQuestion();
+  </script>
 <nav>
   <a href="/subpage/keyword.html">두음쎔</a>
   <a href="/subpage/designPattern.html">디자인패턴</a>
